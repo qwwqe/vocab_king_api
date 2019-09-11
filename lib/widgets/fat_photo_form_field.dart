@@ -3,6 +3,7 @@ import 'package:vocab_king/widgets/take_picture_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:vocab_king/widgets/show_photo_screen.dart';
 //import 'package:image/image.dart';
 
 class FatPhotoFormField extends StatefulWidget {
@@ -36,29 +37,27 @@ class _FatPhotoFormFieldState extends State<FatPhotoFormField> {
 
     if(photos.length > 0) {
       children = List<Widget>.generate(photos.length, (i) {
-        /*
-        return Container(
-          decoration: BoxDecoration(
-            //image: DecorationImage(image: Image.file(File(photos[i]), fit: BoxFit.fill)),
-            image: DecorationImage(image: FileImage(File(photos[i])), fit: BoxFit.fill),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.black),
+        return GestureDetector(
+          onTap: () async {
+            bool delete = await Navigator.push(context, MaterialPageRoute(
+                builder: (context) => ShowPhotoScreen(photoPath: photos[i])));
+            if(delete != null && delete) {
+              setState(() {
+                photos.removeAt(i);
+              });
+            }
+          },
+          child: Container(
+              margin: EdgeInsets.fromLTRB(0,0,0,24),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: Image.file(File(photos[i]), fit: BoxFit.fill),
+              ),
           ),
-          //padding: EdgeInsets.symmetric(vertical: 5),
-          child: Image.file(File(photos[i]), fit: BoxFit.fill),
-
-        );
-        */
-        return Container(
-          margin: EdgeInsets.fromLTRB(0,0,0,24),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: Colors.black),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: Image.file(File(photos[i]), fit: BoxFit.fill),
-          )
         );
       });
     }

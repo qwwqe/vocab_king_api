@@ -1,7 +1,4 @@
 import 'package:vocab_king/models/words.dart';
-import 'dart:async';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class StatsOverview {
   int nWords;
@@ -36,15 +33,5 @@ class StatsOverview {
       undefinedWords: List<String>.from(undefinedWords),
       untaggedWords: List<String>.from(untaggedWords),
     );
-  }
-}
-
-Future<StatsOverview> getStatsOverview(http.Client client) async {
-  final response = await client.get(Uri.http("100.64.1.17:8585", "/stats"));
-
-  if(response.statusCode == 200) {
-    return StatsOverview.fromJson(json.decode(response.body));
-  } else {
-    throw Exception('Failed to retrieve stats');
   }
 }

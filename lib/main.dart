@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:vocab_king/home_tab/home_tab_page.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:vocab_king/widgets/extended_fab.dart';
+import 'package:vocab_king/words_tab/words_tab_page.dart';
 
 void main() => runApp(MainApp());
 
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
   final _tabContents = <Widget> [
     //Center(child: Icon(Icons.home, size: 64.0)),
     HomeTabPage(),
-    Center(child: Icon(Icons.font_download, size: 64.0)),
+    WordsTabPage(),
     Center(child: Icon(Icons.chat_bubble, size: 64.0)),
     Center(child: Icon(Icons.free_breakfast, size: 64.0)),
   ];

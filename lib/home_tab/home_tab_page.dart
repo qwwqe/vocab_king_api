@@ -3,6 +3,7 @@ import 'package:vocab_king/models/stats.dart';
 import 'package:vocab_king/models/words.dart';
 import 'package:http/http.dart' as http;
 import 'package:vocab_king/home_tab/panels.dart';
+import 'package:vocab_king/requests/requests.dart';
 
 class HomeTabPage extends StatefulWidget {
   HomeTabPage({Key key}) : super(key: key);
@@ -29,7 +30,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
           builder: (context, snapshot) {
 
             if(snapshot.hasError) {
-              print(snapshot.error.toString());
+              debugPrint(snapshot.error.toString());
               return Center(
                 child: Icon(Icons.error),
               );

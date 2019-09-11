@@ -5,9 +5,10 @@ class Word {
   Word({this.value, this.definitions});
 
   factory Word.fromJson(Map<String, dynamic> json) {
+    var _definitions = json['definitions'] as List;
     return Word(
       value: json['value'],
-      definitions: json['definitions'],
+      definitions: _definitions.map((d) => Definition.fromJson(d)).toList(),
     );
   }
 }
@@ -21,7 +22,7 @@ class Definition {
   factory Definition.fromJson(Map<String, dynamic> json) {
     return Definition(
       value: json['value'],
-      classification: json['classification'],
+      classification: Classification.fromJson(json['classification']),
     );
   }
 }
@@ -37,3 +38,4 @@ class Classification {
     );
   }
 }
+

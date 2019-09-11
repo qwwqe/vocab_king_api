@@ -77,6 +77,7 @@ class _ModifyWordFormState extends State<ModifyWordForm> {
               filled: false,
               labelText: "Note",
             ),
+            enableInteractiveSelection: true,
             maxLines: 5,
             onSaved: (String value) {
               this._note = value;
